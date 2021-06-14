@@ -36,10 +36,23 @@ const questions = [
         message: "How can someone test your app?",
     },
     {
+        type: "confirm",
+        name: "isLicense",
+        message: "Would you like to add a license?",
+        default: true,
+    },
+    {
         type: "rawlist",
         name: "licenseType",
         message: "What is your project's description?",
-        choices: ["MIT", "Apache", "GNU", "Boost", "None"],
+        choices: ["mit", "apache-2.0", "gpl-3.0", "mpl-2.0"],
+        when: ({ isLicense }) => {
+            if (isLicense) {
+                return true;
+            } else {
+                return false;
+            }
+        },
     },
     {
         type: "input",
@@ -67,6 +80,7 @@ function writeToFile(fileName, data) {
 // TODO: Create a function to initialize app
 function init() {
     inquirer.prompt(questions).then((answers) => {
+        console.log(answers);
         // Use user feedback for... whatever!!
         const returnedString = generateMarkdown(answers);
         writeToFile("README.md", returnedString);
