@@ -9,16 +9,19 @@ const questions = [
         type: "input",
         name: "title",
         message: "What is your project name?",
+        validation: titleInput => titleInput ? true : false
     },
     {
         type: "input",
         name: "description",
         message: "What is your project's description?",
+        validation: descriptionInput => descriptionInput ? true : false
     },
     {
         type: "input",
         name: "installationInstructions",
         message: "How do you install it?",
+        validation: descriptionInput => descriptionInput ? true : false
     },
     {
         type: "input",
